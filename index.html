@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="fa" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Telegram SCAM • HACKED</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: black;
+            font-family: 'Courier New', monospace;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #matrixCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.9;
+            pointer-events: none;
+        }
+
+        /* مینی مپ (زیر باکس اصلی) */
+        #minimap {
+            position: absolute;
+            top: 62%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 220px;
+            height: 130px;
+            border: 2px solid #88ccff;
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.8);
+            box-shadow: 0 0 20px #88ccff;
+            z-index: 20;
+            backdrop-filter: blur(5px);
+            overflow: hidden;
+        }
+
+        #minimapCanvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .info-box {
+            position: absolute;
+            top: 35%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.85);
+            border: 2px solid #88ccff;
+            border-radius: 12px;
+            padding: 15px 12px;
+            box-shadow: 0 0 40px #88ccff, inset 0 0 8px #88ccff;
+            z-index: 10;
+            text-align: center;
+            width: 90%;
+            max-width: 320px;
+            backdrop-filter: blur(5px);
+            animation: borderPulse 2s infinite alternate;
+        }
+
+        @keyframes borderPulse {
+            from { border-color: #88ccff; box-shadow: 0 0 25px #88ccff; }
+            to   { border-color: #aaddff; box-shadow: 0 0 45px #aaddff; }
+        }
+
+        .fake-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 8px;
+            color: #88ccff;
+            font-size: 22px;
+            text-shadow: 0 0 8px #88ccff;
+        }
+
+        /* آیکون تلگرام با رنگ ترکیبی (آبی کم رنگ، آبی تیره، مشکی) */
+        .telegram-icon-mixed {
+            font-size: 28px;
+            background: linear-gradient(45deg, #88ccff, #3366aa, #000);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 10px #88ccff);
+            animation: rotate 3s infinite linear;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* عنوان چسبیده 🏴‍☠️AMiR_APEX01🇮🇷 */
+        .scp-title {
+            color: #88ccff;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 0 0 15px #88ccff;
+            margin: 10px 0;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            flex-wrap: wrap;
+        }
+
+        .hacker-text {
+            color: #88ccff;
+            font-size: 15px;
+            margin: 8px 0;
+            text-shadow: 0 0 6px #88ccff;
+            font-weight: bold;
+            border-right: 2px solid #88ccff;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 3s steps(30, end), blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #88ccff; }
+        }
+
+        .telegram-item {
+            background: rgba(136, 204, 255, 0.15);
+            border: 2px solid #88ccff;
+            border-radius: 6px;
+            padding: 8px 10px;
+            margin: 12px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            box-shadow: 0 0 12px rgba(136, 204, 255, 0.5);
+        }
+
+        .telegram-item:hover {
+            background: rgba(136, 204, 255, 0.3);
+            transform: scale(1.02);
+            box-shadow: 0 0 20px #88ccff;
+        }
+
+        .telegram-icon {
+            font-size: 30px;
+            color: #88ccff;
+            filter: drop-shadow(0 0 8px #88ccff);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .id-content {
+            text-align: left;
+            flex: 1;
+        }
+
+        .id-label {
+            font-size: 10px;
+            opacity: 0.9;
+            color: #aaddff;
+            letter-spacing: 1px;
+        }
+
+        .id-value {
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 0 0 6px #88ccff;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+
+        /* تگ APEX (قرمز و سیاه) با پرچم دزدان دریایی جلو */
+        .tag-apex {
+            font-size: 11px;
+            font-weight: bold;
+            color: #ff0000;
+            background: linear-gradient(145deg, #300, #000);
+            border: 1px solid #ff0000;
+            border-radius: 4px;
+            padding: 3px 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            box-shadow: 0 0 8px #ff0000;
+            text-shadow: 0 0 5px #ff0000;
+        }
+
+        .fake-warning {
+            background: rgba(255, 0, 0, 0.3);
+            border: 2px dashed #ff0000;
+            padding: 6px;
+            margin: 10px 0;
+            color: #ffaaaa;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            animation: blinkWarning 0.8s infinite;
+        }
+
+        @keyframes blinkWarning {
+            0% { opacity: 1; }
+            50% { opacity: 0.4; }
+            100% { opacity: 1; }
+        }
+
+        .anonymous-box {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            z-index: 30;
+            font-size: 32px;
+            color: #88ccff;
+            filter: drop-shadow(0 0 15px #88ccff);
+            animation: float 4s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        .command-line {
+            color: #aaddff;
+            font-size: 12px;
+            margin-top: 12px;
+            text-align: left;
+            border-top: 2px solid #88ccff;
+            padding-top: 10px;
+        }
+
+        .cursor {
+            animation: cursor-blink 1s infinite;
+        }
+
+        @keyframes cursor-blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="matrixCanvas"></canvas>
+
+    <div class="anonymous-box">
+        <i class="fas fa-user-secret"></i>
+    </div>
+
+    <div class="info-box">
+        <div class="fake-header">
+            <i class="fab fa-telegram telegram-icon-mixed"></i>
+            <span style="color:#88ccff;">TELEGRAM SCAM</span>
+            <i class="fab fa-telegram telegram-icon-mixed"></i>
+        </div>
+
+        <!-- عنوان 🏴‍☠️AMiR_APEX01🇮🇷 -->
+        <div class="scp-title">
+            <span>🏴‍☠️</span><span>AMiR_APEX01</span><span>🇮🇷</span>
+        </div>
+
+        <div class="hacker-text">> Telegram session compromised_</div>
+
+        <!-- اکانت با تگ APEX -->
+        <a href="https://t.me/AMiR_APEX01" target="_blank" class="telegram-item">
+            <i class="fab fa-telegram telegram-icon"></i>
+            <div class="id-content">
+                <div class="id-label">ACCOUNT</div>
+                <div class="id-value">
+                    @AMiR_APEX01
+                    <span class="tag-apex">🏴‍☠️ APEX</span>
+                </div>
+            </div>
+        </a>
+
+        <!-- کانال با تگ APEX -->
+        <a href="https://t.me/A_BLACK_LIST" target="_blank" class="telegram-item">
+            <i class="fab fa-telegram telegram-icon"></i>
+            <div class="id-content">
+                <div class="id-label">CHANNEL</div>
+                <div class="id-value">
+                    @A_BLACK_LIST
+                    <span class="tag-apex">🏴‍☠️ APEX</span>
+                </div>
+            </div>
+        </a>
+
+        <div class="command-line">
+            <span style="color:#aaddff;">root@anonymous:~$</span> ./ddos --target=global<br>
+            <span style="color:#aaddff;">>></span> Packets flooding... <span class="cursor">_</span>
+        </div>
+    </div>
+
+    <!-- مینی مپ -->
+    <div id="minimap">
+        <canvas id="minimapCanvas" width="220" height="130"></canvas>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const chars = "01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン";
+        const fontSize = 12;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+        for (let x = 0; x < columns; x++) drops[x] = Math.floor(Math.random() * canvas.height / fontSize);
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#88ccff';
+            ctx.font = fontSize + 'px monospace';
+            for (let i = 0; i < drops.length; i++) {
+                const text = chars.charAt(Math.floor(Math.random() * chars.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
+            }
+        }
+        setInterval(drawMatrix, 35);
+
+        // مینی مپ با حملات سایبری
+        const miniCanvas = document.getElementById('minimapCanvas');
+        const miniCtx = miniCanvas.getContext('2d');
+        miniCanvas.width = 220;
+        miniCanvas.height = 130;
+
+        const countries = [
+            { name: 'Iran', x: 40, y: 65 },
+            { name: 'India', x: 75, y: 80 },
+            { name: 'China', x: 110, y: 55 },
+            { name: 'South Korea', x: 125, y: 48 },
+            { name: 'Japan', x: 150, y: 52 },
+            { name: 'Russia', x: 95, y: 28 },
+            { name: 'USA', x: 195, y: 55 },
+            { name: 'North Korea', x: 120, y: 45 }
+        ];
+
+        let attacks = [];
+
+        function createCyberAttack() {
+            const srcIndex = Math.floor(Math.random() * countries.length);
+            let dstIndex;
+            do {
+                dstIndex = Math.floor(Math.random() * countries.length);
+            } while (dstIndex === srcIndex);
+
+            const src = countries[srcIndex];
+            const dst = countries[dstIndex];
+
+            attacks.push({
+                src: src,
+                dst: dst,
+                progress: 0,
+                speed: 0.01 + Math.random() * 0.02
+            });
+        }
+
+        for (let i = 0; i < 8; i++) {
+            setTimeout(createCyberAttack, i * 400);
+        }
+        setInterval(createCyberAttack, 1200);
+
+        function drawMinimap() {
+            miniCtx.clearRect(0, 0, miniCanvas.width, miniCanvas.height);
+            
+            miniCtx.fillStyle = '#001122';
+            miniCtx.fillRect(0, 0, miniCanvas.width, miniCanvas.height);
+
+            miniCtx.strokeStyle = '#4488ff';
+            miniCtx.lineWidth = 0.5;
+            miniCtx.setLineDash([2, 3]);
+            for (let i = 0; i < miniCanvas.width; i += 25) {
+                miniCtx.beginPath();
+                miniCtx.moveTo(i, 0);
+                miniCtx.lineTo(i, miniCanvas.height);
+                miniCtx.stroke();
+            }
+            for (let i = 0; i < miniCanvas.height; i += 25) {
+                miniCtx.beginPath();
+                miniCtx.moveTo(0, i);
+                miniCtx.lineTo(miniCanvas.width, i);
+                miniCtx.stroke();
+            }
+            miniCtx.setLineDash([]);
+
+            miniCtx.font = '7px monospace';
+            miniCtx.fillStyle = '#aaddff';
+            countries.forEach(c => {
+                miniCtx.fillText(c.name, c.x - 18, c.y - 8);
+            });
+
+            countries.forEach(c => {
+                miniCtx.fillStyle = '#88ccff';
+                miniCtx.shadowColor = '#88ccff';
+                miniCtx.shadowBlur = 6;
+                miniCtx.beginPath();
+                miniCtx.arc(c.x, c.y, 4, 0, Math.PI*2);
+                miniCtx.fill();
+            });
+
+            attacks = attacks.filter(a => a.progress < 1);
+            attacks.forEach(attack => {
+                attack.progress += attack.speed;
+                const x = attack.src.x + (attack.dst.x - attack.src.x) * attack.progress;
+                const y = attack.src.y + (attack.dst.y - attack.src.y) * attack.progress;
+
+                miniCtx.strokeStyle = '#ff6666';
+                miniCtx.lineWidth = 1;
+                miniCtx.setLineDash([3, 3]);
+                miniCtx.globalAlpha = 0.3;
+                miniCtx.beginPath();
+                miniCtx.moveTo(attack.src.x, attack.src.y);
+                miniCtx.lineTo(attack.dst.x, attack.dst.y);
+                miniCtx.stroke();
+
+                miniCtx.setLineDash([]);
+                miniCtx.fillStyle = '#ff0000';
+                miniCtx.shadowColor = '#ff0000';
+                miniCtx.shadowBlur = 8;
+                miniCtx.globalAlpha = 0.9;
+                miniCtx.beginPath();
+                miniCtx.arc(x, y, 2.5, 0, Math.PI*2);
+                miniCtx.fill();
+
+                for (let i = 1; i <= 2; i++) {
+                    const backProgress = attack.progress - i * 0.07;
+                    if (backProgress > 0) {
+                        const bx = attack.src.x + (attack.dst.x - attack.src.x) * backProgress;
+                        const by = attack.src.y + (attack.dst.y - attack.src.y) * backProgress;
+                        miniCtx.globalAlpha = 0.5;
+                        miniCtx.beginPath();
+                        miniCtx.arc(bx, by, 2, 0, Math.PI*2);
+                        miniCtx.fill();
+                    }
+                }
+            });
+
+            miniCtx.globalAlpha = 1;
+            miniCtx.shadowBlur = 0;
+            miniCtx.font = 'bold 7px monospace';
+            miniCtx.fillStyle = '#ff0000';
+            miniCtx.shadowColor = '#ff0000';
+            miniCtx.shadowBlur = 5;
+            miniCtx.fillText('DDoS', 10, 15);
+
+            requestAnimationFrame(drawMinimap);
+        }
+
+        drawMinimap();
+
+        window.onload = function() {
+            setTimeout(() => {
+                alert("⚠️ GLOBAL CYBER ATTACK SIMULATION ⚠️\nDDoS attacks between countries!");
+            }, 1500);
+        }
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>
